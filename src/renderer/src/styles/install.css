@@ -1,0 +1,238 @@
+.drop-zone {
+  position: relative;
+  min-height: 320px;
+  padding: 28px 24px 0;
+  border: 1px dashed var(--drop-border);
+  border-radius: var(--radius-box);
+  background: var(--panel);
+  text-align: center;
+}
+.drop-zone.dragging {
+  background: var(--primary-surface);
+  border-color: var(--accent);
+}
+.upload-art {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--primary-border);
+  border-radius: 17px;
+  color: var(--accent);
+  background: var(--primary-surface);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+}
+.drop-zone h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  letter-spacing: -0.55px;
+}
+.drop-zone > p {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  max-width: 34ch;
+  margin-inline: auto;
+  text-wrap: pretty;
+}
+.button-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.button-row.centered {
+  justify-content: center;
+  margin: 24px 0 20px;
+}
+.button-row > button {
+  flex: 1;
+}
+.button-row.centered > button {
+  flex: initial;
+}
+
+.full {
+  width: 100%;
+}
+.format-tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.format-tags span {
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: var(--text-xs);
+  padding: 3px 7px;
+}
+.drop-footer {
+  display: flex;
+  justify-content: center;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding: 12px 0;
+  margin-top: 20px;
+}
+.text-button {
+  background: transparent;
+  color: var(--primary-ink);
+  font-size: var(--text-sm);
+  gap: 5px;
+  padding: 0;
+}
+.text-button:hover {
+  color: var(--accent);
+}
+.local-note {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 2px;
+}
+.local-note svg {
+  color: var(--subtle);
+}
+.local-note strong {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+.local-note p {
+  margin-top: 3px;
+  font-size: var(--text-xs);
+  color: var(--subtle);
+}
+.device-panel {
+  padding: 24px;
+}
+.device-panel > .eyebrow {
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+}
+.device-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-block: 20px 24px;
+}
+.device-name {
+  min-width: 0;
+}
+.headset-art {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.headset-art svg {
+  width: 64px;
+  height: 48px;
+}
+.headset-art.connected {
+  color: var(--mint-ink);
+}
+.device-panel h2 {
+  overflow-wrap: anywhere;
+  text-align: start;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.connection-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+  margin-top: 5px;
+  color: var(--muted);
+}
+.setup-steps {
+  margin: 0 0 17px;
+  padding: 0 0 0 17px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  list-style: decimal;
+}
+.setup-steps li {
+  padding-left: 3px;
+  margin-bottom: 6px;
+}
+.setup-steps li::marker {
+  color: var(--subtle);
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 15px 0 0;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+.device-panel .button-row {
+  margin-top: 13px;
+}
+.hint {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+.device-panel > .hint {
+  text-align: center;
+  font-size: var(--text-sm);
+}
+.advanced,
+.fingerprint {
+  color: var(--muted);
+  margin-top: 10px;
+  font-size: var(--text-xs);
+}
+.advanced summary,
+.fingerprint summary {
+  padding-block: 6px;
+  cursor: pointer;
+}
+.advanced input {
+  margin-top: 8px;
+}
+.fingerprint {
+  margin-bottom: 15px;
+}
+.fingerprint code {
+  display: block;
+  margin-top: 8px;
+  font-size: var(--text-xs);
+  overflow-wrap: anywhere;
+}
+.device-description {
+  font-size: var(--text-sm);
+  margin: 0 0 18px;
+  text-wrap: pretty;
+}
+.muted {
+  color: var(--muted);
+}
+.device-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  border: 1px solid var(--mint-border);
+  background: var(--mint-surface);
+  padding: 11px;
+  border-radius: 6px;
+  margin-bottom: 17px;
+}
+.device-note p {
+  color: var(--mint-ink);
+  font-size: var(--text-sm);
+}
+.device-note svg {
+  color: var(--accent);
+  margin-top: 2px;
+}

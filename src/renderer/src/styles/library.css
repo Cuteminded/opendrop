@@ -1,0 +1,61 @@
+.library-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.library-toolbar > .field:first-child {
+  flex: 1;
+}
+.library-toolbar > .field:last-child {
+  width: 170px;
+}
+.library-hint {
+  margin-top: 20px;
+}
+.activity-list {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--color-base-200);
+}
+.log-row {
+  display: grid;
+  grid-template-columns: auto 15px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding: 16px;
+  font-size: var(--text-sm);
+  color: var(--muted);
+  line-height: 1.6;
+}
+.log-row:last-child {
+  border: 0;
+}
+.log-row time {
+  flex-shrink: 0;
+  font-family: monospace;
+  color: var(--subtle);
+  font-size: var(--text-sm);
+}
+.log-row > span:last-child {
+  overflow-wrap: anywhere;
+}
+.log-dot {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+.log-row.error {
+  color: var(--error-ink);
+}
+
+.library-toolbar .field {
+  margin: 0;
+}
+.library-results {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin-bottom: 12px;
+}

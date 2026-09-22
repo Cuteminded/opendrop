@@ -1,0 +1,28 @@
+appId: org.opendrop.desktop
+productName: OpenDrop
+directories:
+  output: release
+files:
+  - dist/**/*
+  - package.json
+extraResources:
+  - from: resources/devkit
+    to: devkit
+  - from: THIRD_PARTY_NOTICES.md
+    to: THIRD_PARTY_NOTICES.md
+asar: true
+protocols:
+  - name: OpenDrop install link
+    schemes: [opendrop]
+mac:
+  category: public.app-category.utilities
+  target: [dmg, zip]
+  identity: null
+win:
+  target: [nsis]
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+linux:
+  category: Utility
+  target: [AppImage]

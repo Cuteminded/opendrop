@@ -1,0 +1,53 @@
+:root {
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-md: 0.875rem;
+  --text-base: 0.875rem;
+  --bg: var(--color-base-300);
+  --panel: var(--color-base-100);
+  --text: var(--color-base-content);
+  --muted: color-mix(in oklab, var(--text) 78%, transparent);
+  --subtle: color-mix(in oklab, var(--text) 72%, transparent);
+  --line: color-mix(in oklab, var(--text) 14%, transparent);
+  --drop-border: color-mix(in oklab, var(--text) 60%, var(--panel));
+  --primary-ink: var(--color-primary);
+  --secondary-ink: var(--color-secondary);
+  --mint-ink: var(--color-accent);
+  --info-ink: var(--color-info);
+  --success-ink: var(--color-success);
+  --warning-ink: var(--color-warning);
+  --error-ink: var(--color-error);
+  --accent: var(--primary-ink);
+  --primary-surface: color-mix(in oklab, var(--color-primary) 10%, var(--panel));
+  --primary-border: color-mix(in oklab, var(--color-primary) 30%, var(--panel));
+  --secondary-surface: color-mix(in oklab, var(--color-secondary) 10%, var(--panel));
+  --secondary-border: color-mix(in oklab, var(--color-secondary) 30%, var(--panel));
+  --mint-surface: color-mix(in oklab, var(--color-accent) 8%, var(--panel));
+  --mint-border: color-mix(in oklab, var(--color-accent) 25%, var(--panel));
+  --info-surface: color-mix(in oklab, var(--color-info) 10%, var(--panel));
+  --info-border: color-mix(in oklab, var(--color-info) 30%, var(--panel));
+  --warning-surface: color-mix(in oklab, var(--color-warning) 10%, var(--panel));
+  --warning-border: color-mix(in oklab, var(--color-warning) 30%, var(--panel));
+  --error-surface: color-mix(in oklab, var(--color-error) 10%, var(--panel));
+  --error-border: color-mix(in oklab, var(--color-error) 30%, var(--panel));
+}
+
+html[data-theme='dark'] {
+  --bg: #1f212b;
+}
+
+html[data-theme='light'] {
+  --bg: #e6e6e6;
+  --primary-ink: var(--color-primary-content);
+  --secondary-ink: var(--color-secondary-content);
+  --mint-ink: var(--color-accent-content);
+  --info-ink: var(--color-info-content);
+  --success-ink: var(--color-success-content);
+  --warning-ink: var(--color-warning-content);
+  --error-ink: var(--color-error-content);
+}
+
+::selection {
+  color: var(--color-primary-content);
+  background-color: var(--color-primary);
+}

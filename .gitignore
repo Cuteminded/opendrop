@@ -1,0 +1,12 @@
+.DS_Store
+.vscode/
+node_modules/
+dist/
+release/
+coverage/
+test-results/
+.data/
+*.log
+.env
+.env.*
+!.env.example

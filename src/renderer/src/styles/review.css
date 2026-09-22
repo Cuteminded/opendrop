@@ -1,0 +1,109 @@
+footer {
+  margin-top: 34px;
+  padding: 17px 0 22px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  color: var(--subtle);
+  font-size: var(--text-xs);
+}
+.build-review {
+  padding: 23px;
+}
+.build-review .section-heading h2 {
+  margin-top: 9px;
+  font-size: 21px;
+}
+.build-review .section-heading .eyebrow {
+  font-size: var(--text-xs);
+  color: var(--primary-ink);
+}
+.file-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 19px;
+}
+.file-icon {
+  background: var(--primary-surface);
+  border: 1px solid var(--primary-border);
+  border-radius: 8px;
+  color: var(--accent);
+  height: 46px;
+  width: 46px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.file-summary > div:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+}
+.file-summary strong {
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+  font-weight: 450;
+}
+.file-summary p {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin-top: 5px;
+}
+.tag {
+  font-size: var(--text-xs);
+  border: 1px solid var(--primary-border);
+  border-radius: 4px;
+  padding: 4px 6px;
+  color: var(--primary-ink);
+  white-space: nowrap;
+}
+.notice {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+  padding: 10px;
+  background: var(--warning-surface);
+  border: 1px solid var(--warning-border);
+  color: var(--warning-ink);
+  border-radius: 5px;
+  margin-top: 11px;
+}
+.notice p {
+  font-size: var(--text-sm);
+}
+.notice svg {
+  margin-top: 2px;
+}
+.source-path {
+  color: var(--muted);
+  font:
+    var(--text-sm)/1.6 'SFMono-Regular',
+    Consolas,
+    monospace;
+  overflow-wrap: anywhere;
+  margin: 12px 0;
+}
+.install-button {
+  margin-top: 22px;
+}
+.connect-prompt {
+  color: var(--accent);
+  font-size: var(--text-sm);
+  margin-top: 14px;
+}
+.build-review > .hint {
+  text-align: center;
+}
+
+.source-details {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+.source-details summary {
+  cursor: pointer;
+  padding-block: 6px;
+}
