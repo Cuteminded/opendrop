@@ -2,17 +2,24 @@ import { useEffect, useState } from 'react';
 import { CircleAlert, FlaskConical, LoaderCircle, PackageOpen, X } from 'lucide-react';
 import type { AppState, Build } from '../../shared/types';
 import { InstallLinkDialog } from './InstallLinkDialog';
-import { Sidebar } from './Sidebar';
+import { Sidebar, type Page } from './Sidebar';
 import { useTheme } from './useTheme';
 import { BuildReview, DevicePanel, DropZone, JobList } from './components';
 import { Library } from './components/Library';
 import { Activity } from './components/Activity';
+import { CommunityStore } from './components/CommunityStore';
 
 const initial: AppState = { mode: 'device', devices: [], jobs: [], logs: [] };
+const pageTitles: Record<Page, string> = {
+  install: 'Install',
+  library: 'Library',
+  'community-store': 'Community Store',
+  activity: 'Activity',
+};
 export default function App() {
   const { appearance, setAppearance } = useTheme();
   const [state, setState] = useState<AppState>(initial);
-  const [page, setPage] = useState<'install' | 'library' | 'activity'>('install');
+  const [page, setPage] = useState<Page>('install');
   const [build, setBuild] = useState<Build | null>(null);
   const [name, setName] = useState('');
   const [entrypoint, setEntrypoint] = useState('');
@@ -93,9 +100,7 @@ export default function App() {
           <div>
             <span className="topbar-label">Workspace</span>
             <span className="slash">/</span>
-            <span>
-              {page === 'install' ? 'Install' : page === 'library' ? 'Library' : 'Activity'}
-            </span>
+            <span>{pageTitles[page]}</span>
           </div>
           <div className="topbar-right">
             {demo && (
@@ -238,6 +243,7 @@ export default function App() {
               setFilters={setLibraryFilters}
             />
           )}
+          {page === 'community-store' && <CommunityStore />}
           {page === 'activity' && <Activity logs={state.logs} />}
           <footer>
             <span>Built for an open headset.</span>

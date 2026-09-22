@@ -1,7 +1,7 @@
-import { Activity, ArrowDownToLine, Box, FlaskConical, Layers } from 'lucide-react';
+import { Activity, ArrowDownToLine, Box, FlaskConical, Layers, Store } from 'lucide-react';
 import type { Appearance } from './useTheme';
 
-export type Page = 'install' | 'library' | 'activity';
+export type Page = 'install' | 'library' | 'community-store' | 'activity';
 export function Sidebar({
   appearance,
   setAppearance,
@@ -53,6 +53,16 @@ export function Sidebar({
             >
               <Layers size={18} />
               Library{installed > 0 && <span className="badge badge-xs count">{installed}</span>}
+            </button>
+          </li>
+          <li>
+            <button
+              className={page === 'community-store' ? 'menu-active' : ''}
+              aria-current={page === 'community-store' ? 'page' : undefined}
+              onClick={() => setPage('community-store')}
+            >
+              <Store size={18} aria-hidden="true" />
+              <span>Community Store</span>
             </button>
           </li>
           <li>
