@@ -1,8 +1,8 @@
 {
   "name": "opendrop",
   "version": "0.1.0",
-  "description": "Open-source app installation for Steam Frame",
-  "author": "OpenDrop contributors",
+  "description": "Open-source installation helper for Steam Frame",
+  "author": "Cuteminded",
   "license": "MIT",
   "private": true,
   "type": "module",

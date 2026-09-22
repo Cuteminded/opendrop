@@ -1,4 +1,4 @@
-appId: org.opendrop.desktop
+appId: nu.lizzy.opendrop
 productName: OpenDrop
 directories:
   output: release
