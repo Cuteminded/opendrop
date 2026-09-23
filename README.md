@@ -8,10 +8,12 @@ The app targets Windows, macOS and Linux. It uses Electron, React, TypeScript an
 with SSH/SFTP implemented in Node.js. You do not need ADB, rsync or Python on your
 computer. Valve's small Python helpers run on the headset.
 
-This is an early version. Automated tests cover the local install flow and a
-simulated Devkit HTTP/SSH/SFTP server. Installation and launching on a physical
-Steam Frame still need testing. Windows and Linux installers are configured in CI;
-they have not been verified on this development machine.
+This is an early, experimental version. I haven't received my Steam Frame yet,
+so OpenDrop has not been tested on real hardware. The app may not work at all.
+
+Automated tests cover the local install flow and a simulated Devkit HTTP/SSH/SFTP
+server. Windows and Linux installers are configured in CI; they have not been
+verified on this development machine.
 
 ## Run locally
 
