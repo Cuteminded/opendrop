@@ -141,7 +141,7 @@ discarding a build, finishing an install or exiting normally. A crash may leave
 files in the `cache` subdirectory; these can be removed while the app is closed.
 No analytics or remote account is used.
 
-The interface uses the light and dark daisyUI themes from lizzy.nu. Choose Light,
+The interface uses daisyUI components with flat light and dark themes. Choose Light,
 Dark or System under Appearance in the sidebar. OpenDrop remembers this choice
 on this computer.
 
@@ -161,7 +161,7 @@ contact real headsets.
 
 Run `npm run build` before either interface test. Both use temporary application
 data. The interface checks cover 320 to 1180 pixel widths, 200% zoom, light and
-dark themes, dialog focus, filters and queue visibility. Screenshots are saved
+dark themes, gradient-free backgrounds, dialog focus, filters and queue visibility. Screenshots are saved
 in `test-results/interface/`.
 
 Installers are written to `release/`: DMG and ZIP on macOS, NSIS on Windows, and

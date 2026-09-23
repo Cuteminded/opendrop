@@ -13,6 +13,27 @@ export async function expectContentToFit(page) {
       .map((element) => element.outerHTML.slice(0, 160));
   });
   expect(overflow, 'Content must fit without horizontal scrolling').toEqual([]);
+  const overlappingJobs = await page.locator('.job-row').evaluateAll((rows) =>
+    rows
+      .filter((row) => {
+        const [info, actions] = row.querySelectorAll(':scope > div');
+        return actions.getBoundingClientRect().top < info.getBoundingClientRect().bottom;
+      })
+      .map((row) => row.textContent),
+  );
+  expect(overlappingJobs, 'Job actions must not overlap app details').toEqual([]);
+  const gradients = await page.evaluate(() =>
+    [...document.querySelectorAll('body, body *')].flatMap((element) => {
+      if (!element.checkVisibility()) return [];
+      return [null, '::before', '::after'].flatMap((pseudo) => {
+        const style = getComputedStyle(element, pseudo);
+        return [style.backgroundImage, style.maskImage].some((value) => value.includes('gradient('))
+          ? [`${element.tagName}.${element.className}${pseudo || ''}`]
+          : [];
+      });
+    }),
+  );
+  expect(gradients, 'Visible components must use flat backgrounds without gradients').toEqual([]);
 }
 
 export async function textContrast(page, selectors) {

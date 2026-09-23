@@ -43,6 +43,8 @@ try {
       '.version',
       '.local-note p',
       '.job-error',
+      '.menu-active',
+      '.menu-active span',
     ]);
     for (const pair of colors)
       expect(pair.ratio, `${theme}: ${pair.selector}`).toBeGreaterThanOrEqual(4.5);
@@ -53,7 +55,7 @@ try {
     );
     for (const width of [1180, 900, 600, 320]) {
       await resize(app, width);
-      for (const name of ['Install', 'Library', 'Activity']) {
+      for (const name of ['Install', 'Library', 'Community Store', 'Activity']) {
         await page.getByRole('button', { name, exact: true }).click();
         await expectContentToFit(page);
       }
@@ -106,7 +108,7 @@ try {
   await page.keyboard.press('Escape');
   await expect(dialog).toBeVisible();
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(page.locator('.spin').first()).toHaveCSS('animation-name', 'none');
+  await expect(page.locator('.loading').first()).toHaveCSS('mask-image', 'none');
   await showState(app, initial);
   await expect(input).toBeEnabled();
   await page.keyboard.press('Escape');
@@ -160,7 +162,7 @@ try {
   await expect(page.getByText('Nothing in the queue yet')).toBeVisible();
   expect(errors).toEqual([]);
   console.log(
-    'Interface checks passed: themes, contrast, all queue items, filters, modal keyboard flow, loading, reduced motion, empty states, narrow layouts and 200% zoom.',
+    'Interface checks passed: themes, contrast, flat backgrounds, all pages, queue items, filters, modal keyboard flow, loading, reduced motion, empty states, narrow layouts and 200% zoom.',
   );
 } finally {
   await app?.close();

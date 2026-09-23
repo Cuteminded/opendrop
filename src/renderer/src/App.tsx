@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CircleAlert, FlaskConical, LoaderCircle, PackageOpen, X } from 'lucide-react';
+import { CircleAlert, FlaskConical, PackageOpen, X } from 'lucide-react';
 import type { AppState, Build } from '../../shared/types';
 import { InstallLinkDialog } from './InstallLinkDialog';
 import { Sidebar, type Page } from './Sidebar';
@@ -8,6 +8,7 @@ import { BuildReview, DevicePanel, DropZone, JobList } from './components';
 import { Library } from './components/Library';
 import { Activity } from './components/Activity';
 import { CommunityStore } from './components/CommunityStore';
+import { PageHeading } from './components/PageHeading';
 
 const initial: AppState = { mode: 'device', devices: [], jobs: [], logs: [] };
 const pageTitles: Record<Page, string> = {
@@ -76,8 +77,11 @@ export default function App() {
   const currentJobs = state.jobs.filter((job) => job.mode === state.mode);
 
   return (
-    <div className="app-shell">
-      <a className="skip-link" href="#main-content">
+    <div className="min-h-screen">
+      <a
+        className="btn btn-primary fixed start-4 top-4 z-50 -translate-y-24 focus:translate-y-0"
+        href="#main-content"
+      >
         Skip to content
       </a>
       <Sidebar
@@ -95,22 +99,26 @@ export default function App() {
           })
         }
       />
-      <div className="workspace">
-        <header className="topbar">
-          <div>
-            <span className="topbar-label">Workspace</span>
-            <span className="slash">/</span>
-            <span>{pageTitles[page]}</span>
+      <div className="min-w-0 md:ms-60">
+        <header className="navbar flex-wrap justify-between gap-3 border-b border-base-300 bg-base-100 px-4 py-3 sm:px-6 lg:px-8">
+          <div className="breadcrumbs py-0 text-sm">
+            <ul>
+              <li className="text-base-content/80">Workspace</li>
+              <li>{pageTitles[page]}</li>
+            </ul>
           </div>
-          <div className="topbar-right">
+          <div className="flex flex-wrap items-center gap-3">
             {demo && (
-              <span className="badge badge-sm badge-soft badge-primary test-badge">
+              <span className="badge badge-sm badge-primary">
                 <FlaskConical size={12} />
                 Test mode
               </span>
             )}
-            <span className="topbar-status">
-              <i className={state.connected ? 'online' : ''} />
+            <span className="flex items-center gap-2 text-xs text-base-content/80">
+              <span
+                className={`status status-xs ${state.connected ? 'status-success' : ''}`}
+                aria-hidden="true"
+              />
               {state.connected
                 ? demo
                   ? 'Simulator connected'
@@ -121,9 +129,9 @@ export default function App() {
             </span>
           </div>
         </header>
-        <main id="main-content" tabIndex={-1}>
+        <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
           {demo && (
-            <div className="demo-banner">
+            <div className="alert alert-horizontal mb-6 border-base-300 bg-base-100 text-sm">
               <FlaskConical size={16} />
               <span>
                 Test mode. Installs and launches are simulated. Files stay on this computer.
@@ -131,12 +139,15 @@ export default function App() {
             </div>
           )}
           {error && !urlOpen && (
-            <div className="alert alert-error alert-soft error-banner" role="alert">
+            <div
+              className="error-banner alert alert-horizontal alert-error mb-6 items-start wrap-anywhere"
+              role="alert"
+            >
               <CircleAlert size={18} />
-              <span>{error}</span>
+              <span className="min-w-0">{error}</span>
               <button
                 aria-label="Dismiss error"
-                className="btn btn-ghost btn-square btn-xs icon-button"
+                className="btn btn-ghost btn-square btn-sm"
                 onClick={() => setError('')}
               >
                 <X size={15} />
@@ -144,21 +155,18 @@ export default function App() {
             </div>
           )}
           {state.busy && (
-            <div className="busy-bar" role="status">
-              <LoaderCircle size={15} className="spin" />
+            <div className="mb-4 flex items-center gap-2 text-sm" role="status">
+              <span className="loading loading-spinner loading-sm" aria-hidden="true" />
               {state.busy}...
             </div>
           )}
           {page === 'install' && (
             <>
-              <div className="page-heading">
-                <div>
-                  <h1>Install a build</h1>
-                  <p>Send an app to your {demo ? 'simulator' : 'Steam Frame'} in a few steps.</p>
-                </div>
-              </div>
-              <div className="install-grid">
-                <div className="build-column">
+              <PageHeading title="Install a build">
+                Send an app to your {demo ? 'simulator' : 'Steam Frame'} in a few steps.
+              </PageHeading>
+              <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
+                <div className="min-w-0">
                   {build ? (
                     <BuildReview
                       build={build}
@@ -202,10 +210,10 @@ export default function App() {
                       }}
                     />
                   )}
-                  <div className="local-note">
+                  <div className="local-note mt-5 flex items-start gap-3 px-1 text-xs text-base-content/80">
                     <PackageOpen size={18} />
                     <div>
-                      <strong>
+                      <strong className="font-medium">
                         {demo
                           ? 'Try an install without a headset.'
                           : 'Transfers stay on your local network.'}
@@ -219,12 +227,21 @@ export default function App() {
                   </div>
                 </div>
                 <DevicePanel state={state} busy={busy} run={run} />
-                <section className="queue-section" aria-labelledby="queue-title">
-                  <div className="section-heading">
-                    <h2 id="queue-title">
-                      Install queue<span className="subtle-count">{currentJobs.length}</span>
+                <section
+                  className="min-w-0 lg:col-start-1 lg:row-start-2"
+                  aria-labelledby="queue-title"
+                >
+                  <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                    <h2
+                      id="queue-title"
+                      className="flex items-center gap-2 text-base font-semibold"
+                    >
+                      Install queue
+                      <span className="subtle-count badge badge-sm badge-neutral tabular-nums">
+                        {currentJobs.length}
+                      </span>
                     </h2>
-                    <span className="eyebrow">
+                    <span className="text-xs text-base-content/80">
                       {demo ? 'Simulated transfers' : 'Local transfers'}
                     </span>
                   </div>
@@ -245,7 +262,7 @@ export default function App() {
           )}
           {page === 'community-store' && <CommunityStore />}
           {page === 'activity' && <Activity logs={state.logs} />}
-          <footer>
+          <footer className="footer mt-8 flex flex-wrap justify-between gap-3 border-t border-base-300 pt-5 text-xs text-base-content/80">
             <span>Built for an open headset.</span>
             <span>OpenDrop is not affiliated with Valve.</span>
           </footer>

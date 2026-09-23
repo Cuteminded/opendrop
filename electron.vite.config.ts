@@ -1,20 +1,24 @@
-import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
+import { builtinModules } from 'node:module';
+import { defineConfig } from 'electron-vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { dependencies } from './package.json';
+
+const runtimeModules = ['electron', ...builtinModules, ...Object.keys(dependencies)];
+const external = (id: string) =>
+  id.startsWith('node:') || runtimeModules.some((name) => id === name || id.startsWith(`${name}/`));
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()],
     build: {
       outDir: 'dist/main',
-      rollupOptions: { output: { format: 'cjs', entryFileNames: 'index.cjs' } },
+      rolldownOptions: { external, output: { format: 'cjs', entryFileNames: 'index.cjs' } },
     },
   },
   preload: {
-    plugins: [externalizeDepsPlugin()],
     build: {
       outDir: 'dist/preload',
-      rollupOptions: { output: { format: 'cjs', entryFileNames: 'index.cjs' } },
+      rolldownOptions: { external, output: { format: 'cjs', entryFileNames: 'index.cjs' } },
     },
   },
   renderer: {

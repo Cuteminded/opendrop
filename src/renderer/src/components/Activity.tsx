@@ -1,37 +1,47 @@
-import { CircleAlert, Clock } from 'lucide-react';
+import { CircleAlert, Clock, Info } from 'lucide-react';
 import type { LogEntry } from '../../../shared/types';
+import { EmptyState } from './EmptyState';
+import { PageHeading } from './PageHeading';
 
 export function Activity({ logs }: { logs: LogEntry[] }) {
   return (
     <>
-      <div className="page-heading">
-        <div>
-          <h1>Activity</h1>
-          <p>Connections, transfers and errors from this session.</p>
-        </div>
-      </div>
+      <PageHeading title="Activity">
+        Connections, transfers and errors from this session.
+      </PageHeading>
       {!logs.length ? (
-        <div className="empty-state">
-          <Clock size={27} strokeWidth={1.5} />
-          <div>
-            <strong>No activity yet</strong>
-            <p>Connect a headset or choose a build to get started.</p>
-          </div>
-        </div>
+        <EmptyState icon={Clock} title="No activity yet">
+          Connect a headset or choose a build to get started.
+        </EmptyState>
       ) : (
-        <div className="activity-list">
+        <ul
+          className="list rounded-box border border-base-300 bg-base-100"
+          aria-label="Session activity"
+        >
           {[...logs].reverse().map((log, i) => (
-            <div className={`log-row ${log.level}`} key={`${log.time}-${i}`}>
-              <time dateTime={log.time}>{new Date(log.time).toLocaleTimeString('en-GB')}</time>
+            <li
+              className="list-row grid-cols-[auto_minmax(0,1fr)] items-start"
+              key={`${log.time}-${i}`}
+            >
               {log.level === 'error' ? (
-                <CircleAlert size={15} aria-label="Error" />
+                <CircleAlert size={18} className="mt-1 text-error" aria-label="Error" />
               ) : (
-                <span className="log-dot" />
+                <Info size={18} className="mt-1" aria-label="Information" />
               )}
-              <span>{log.message}</span>
-            </div>
+              <div className="min-w-0">
+                <time
+                  className="font-mono text-xs text-base-content/80 tabular-nums"
+                  dateTime={log.time}
+                >
+                  {new Date(log.time).toLocaleTimeString('en-GB')}
+                </time>
+                <p className={`mt-1 wrap-anywhere ${log.level === 'error' ? 'text-error' : ''}`}>
+                  {log.message}
+                </p>
+              </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </>
   );

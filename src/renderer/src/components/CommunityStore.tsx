@@ -1,20 +1,14 @@
 import { Store } from 'lucide-react';
+import { EmptyState } from './EmptyState';
+import { PageHeading } from './PageHeading';
 
 export function CommunityStore() {
   return (
     <>
-      <div className="page-heading">
-        <div>
-          <h1>Community Store</h1>
-        </div>
-      </div>
-      <div className="empty-state">
-        <Store size={27} strokeWidth={1.5} aria-hidden="true" />
-        <div>
-          <strong>Under development</strong>
-          <p>The Community Store is still being built and is not available yet.</p>
-        </div>
-      </div>
+      <PageHeading title="Community Store" />
+      <EmptyState icon={Store} title="Under development">
+        The Community Store is still being built and is not available yet.
+      </EmptyState>
     </>
   );
 }
