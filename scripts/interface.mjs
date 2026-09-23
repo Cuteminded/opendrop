@@ -41,7 +41,6 @@ try {
       '.subtle-count',
       '.count',
       '.version',
-      '.local-note p',
       '.job-error',
       '.menu-active',
       '.menu-active span',

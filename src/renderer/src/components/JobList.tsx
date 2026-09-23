@@ -19,6 +19,7 @@ export function JobList({
   if (!jobs.length)
     return (
       <EmptyState
+        compact={!library}
         icon={FolderOpen}
         title={library ? 'No installed apps yet' : 'Nothing in the queue yet'}
       >

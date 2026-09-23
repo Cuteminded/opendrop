@@ -21,13 +21,13 @@ export function DeviceConnectionForm({
   return (
     <>
       <ol className="steps steps-vertical text-start text-xs text-base-content/80">
-        <li className="step" data-content="1">
+        <li className="step min-h-12" data-content="1">
           Enable Developer Mode on your Frame.
         </li>
-        <li className="step" data-content="2">
+        <li className="step min-h-12" data-content="2">
           Open Developer &gt; Pair new host.
         </li>
-        <li className="step" data-content="3">
+        <li className="step min-h-12" data-content="3">
           Keep both devices on the same Wi-Fi.
         </li>
       </ol>
@@ -86,16 +86,16 @@ export function DeviceConnectionForm({
           />
         </div>
       </details>
-      <div className="card-actions flex-col">
+      <div className="card-actions grid grid-cols-2">
         <button
-          className="btn w-full"
+          className="btn w-full px-3"
           disabled={busy || !host.trim()}
           onClick={() => run(() => window.opendrop.connect(host.trim(), Number(port), true))}
         >
           Pair headset
         </button>
         <button
-          className="btn w-full"
+          className="btn w-full px-3"
           disabled={busy || !host.trim()}
           onClick={() => run(() => window.opendrop.connect(host.trim(), Number(port), false))}
         >

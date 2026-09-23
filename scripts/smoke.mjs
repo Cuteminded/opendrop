@@ -44,7 +44,7 @@ try {
   await expect(page.locator('.job-status').first()).toHaveText('Cancelled');
   await page.getByRole('switch', { name: 'Test mode' }).click();
   await expect(page.getByRole('button', { name: 'Pair headset' })).toBeVisible();
-  await expect(page.getByText('No headset connected')).toBeVisible();
+  await expect(page.getByText('Waiting to connect')).toBeVisible();
   await page.getByRole('switch', { name: 'Test mode' }).click();
   await page.getByRole('button', { name: 'Connect simulator' }).click();
   await mkdir('test-results', { recursive: true });

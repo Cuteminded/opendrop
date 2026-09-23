@@ -24,7 +24,7 @@ export function DevicePanel({
       className="card card-border bg-base-100 lg:col-start-2 lg:row-span-2 lg:row-start-1"
       aria-labelledby="device-title"
     >
-      <div className="card-body gap-5 p-5 sm:p-6">
+      <div className="card-body gap-3 p-5">
         <div className="flex items-center justify-between gap-2 text-xs font-medium text-base-content/80">
           <span>{demo ? 'Your simulator' : 'Your headset'}</span>
           <Radio size={16} aria-hidden="true" />

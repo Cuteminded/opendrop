@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CircleAlert, FlaskConical, PackageOpen, X } from 'lucide-react';
+import { CircleAlert, FlaskConical, X } from 'lucide-react';
 import type { AppState, Build } from '../../shared/types';
 import { InstallLinkDialog } from './InstallLinkDialog';
 import { Sidebar, type Page } from './Sidebar';
@@ -11,12 +11,6 @@ import { CommunityStore } from './components/CommunityStore';
 import { PageHeading } from './components/PageHeading';
 
 const initial: AppState = { mode: 'device', devices: [], jobs: [], logs: [] };
-const pageTitles: Record<Page, string> = {
-  install: 'Install',
-  library: 'Library',
-  'community-store': 'Community Store',
-  activity: 'Activity',
-};
 export default function App() {
   const { appearance, setAppearance } = useTheme();
   const [state, setState] = useState<AppState>(initial);
@@ -100,38 +94,9 @@ export default function App() {
         }
       />
       <div className="min-w-0 md:ms-60">
-        <header className="navbar flex-wrap justify-between gap-3 border-b border-base-300 bg-base-100 px-4 py-3 sm:px-6 lg:px-8">
-          <div className="breadcrumbs py-0 text-sm">
-            <ul>
-              <li className="text-base-content/80">Workspace</li>
-              <li>{pageTitles[page]}</li>
-            </ul>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            {demo && (
-              <span className="badge badge-sm badge-primary">
-                <FlaskConical size={12} />
-                Test mode
-              </span>
-            )}
-            <span className="flex items-center gap-2 text-xs text-base-content/80">
-              <span
-                className={`status status-xs ${state.connected ? 'status-success' : ''}`}
-                aria-hidden="true"
-              />
-              {state.connected
-                ? demo
-                  ? 'Simulator connected'
-                  : 'Headset connected'
-                : demo
-                  ? 'Simulator disconnected'
-                  : 'No headset connected'}
-            </span>
-          </div>
-        </header>
-        <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+        <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl p-4 sm:p-6 lg:px-8">
           {demo && (
-            <div className="alert alert-horizontal mb-6 border-base-300 bg-base-100 text-sm">
+            <div className="alert alert-horizontal mb-4 border-base-300 bg-base-100 text-sm">
               <FlaskConical size={16} />
               <span>
                 Test mode. Installs and launches are simulated. Files stay on this computer.
@@ -165,7 +130,7 @@ export default function App() {
               <PageHeading title="Install a build">
                 Send an app to your {demo ? 'simulator' : 'Steam Frame'} in a few steps.
               </PageHeading>
-              <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
+              <div className="grid items-start gap-x-6 gap-y-3 lg:grid-cols-[minmax(0,1fr)_18rem] lg:grid-rows-[auto_1fr]">
                 <div className="min-w-0">
                   {build ? (
                     <BuildReview
@@ -210,21 +175,6 @@ export default function App() {
                       }}
                     />
                   )}
-                  <div className="local-note mt-5 flex items-start gap-3 px-1 text-xs text-base-content/80">
-                    <PackageOpen size={18} />
-                    <div>
-                      <strong className="font-medium">
-                        {demo
-                          ? 'Try an install without a headset.'
-                          : 'Transfers stay on your local network.'}
-                      </strong>
-                      <p>
-                        {demo
-                          ? 'Use the sample build to explore the full flow.'
-                          : 'OpenDrop sends your files directly to your Steam Frame.'}
-                      </p>
-                    </div>
-                  </div>
                 </div>
                 <DevicePanel state={state} busy={busy} run={run} />
                 <section
@@ -262,10 +212,6 @@ export default function App() {
           )}
           {page === 'community-store' && <CommunityStore />}
           {page === 'activity' && <Activity logs={state.logs} />}
-          <footer className="footer mt-8 flex flex-wrap justify-between gap-3 border-t border-base-300 pt-5 text-xs text-base-content/80">
-            <span>Built for an open headset.</span>
-            <span>OpenDrop is not affiliated with Valve.</span>
-          </footer>
         </main>
       </div>
       {urlOpen && (

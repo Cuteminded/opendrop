@@ -35,8 +35,8 @@ export function DropZone({
         if (!busy && event.dataTransfer.files[0]) onDrop(event.dataTransfer.files[0]);
       }}
     >
-      <div className="card-body items-center gap-4 px-5 py-8 text-center sm:px-8">
-        <div className="rounded-box bg-primary p-4 text-primary-content" aria-hidden="true">
+      <div className="card-body items-center gap-3 px-5 py-5 text-center sm:px-8">
+        <div className="rounded-box bg-primary p-3 text-primary-content" aria-hidden="true">
           <Upload size={28} strokeWidth={1.8} />
         </div>
         <div>
@@ -47,7 +47,7 @@ export function DropZone({
             Choose a file or folder. You can review it before installing.
           </p>
         </div>
-        <div className="card-actions my-2 justify-center">
+        <div className="card-actions justify-center">
           <button className="btn btn-primary" disabled={busy} onClick={() => onPick(false)}>
             <FilePlus2 size={16} aria-hidden="true" />
             Choose file

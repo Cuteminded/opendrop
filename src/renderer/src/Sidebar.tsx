@@ -1,4 +1,4 @@
-import { Activity, ArrowDownToLine, Box, FlaskConical, Layers, Store } from 'lucide-react';
+import { Activity, ArrowDownToLine, FlaskConical, Layers, Store } from 'lucide-react';
 import type { Appearance } from './useTheme';
 
 export type Page = 'install' | 'library' | 'community-store' | 'activity';
@@ -30,15 +30,8 @@ export function Sidebar({
 }) {
   return (
     <aside className="flex flex-col gap-6 border-b border-base-300 bg-base-100 p-4 md:fixed md:inset-y-0 md:start-0 md:z-10 md:w-60 md:overflow-y-auto md:border-e md:border-b-0 md:p-5">
-      <div className="flex items-center gap-3 px-2 py-3">
-        <div className="rounded-box bg-primary p-2 text-primary-content">
-          <Box size={24} strokeWidth={1.8} aria-hidden="true" />
-        </div>
-        <span className="text-2xl font-semibold tracking-tight">opendrop.</span>
-      </div>
       <nav aria-label="Main navigation">
         <ul className="menu grid w-full grid-cols-2 gap-1 p-0 md:flex">
-          <li className="menu-title col-span-2 px-3 text-base-content/70">Workspace</li>
           {pages.map(({ id, label, icon: Icon }) => (
             <li key={id} className="min-w-0">
               <button
@@ -87,21 +80,11 @@ export function Sidebar({
                 onChange={toggleMode}
               />
             </label>
-            <p className="text-xs text-base-content/80">
-              {demo ? 'Explore without a headset.' : 'Try OpenDrop without hardware.'}
-            </p>
           </div>
         </div>
-        <div className="hidden space-y-3 px-1 text-xs text-base-content/80 md:block">
-          <div className="flex items-center gap-2">
-            <span className="status status-success status-xs" aria-hidden="true" />
-            Open source
-            <span className="badge badge-sm badge-outline ms-auto">MIT</span>
-          </div>
-          <div className="version flex flex-wrap justify-between gap-2">
-            <span>OpenDrop 0.1.0</span>
-            <span>Early access</span>
-          </div>
+        <div className="version hidden flex-wrap justify-between gap-2 px-1 text-xs text-base-content/80 md:flex">
+          <span>0.1.0</span>
+          <span>Early access</span>
         </div>
       </div>
     </aside>

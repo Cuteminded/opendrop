@@ -7,7 +7,7 @@ const isAppearance = (value: string | null): value is Appearance =>
 export function useTheme() {
   const [appearance, setAppearance] = useState<Appearance>(() => {
     const saved = localStorage.getItem('opendrop.appearance');
-    return isAppearance(saved) ? saved : 'dark';
+    return isAppearance(saved) ? saved : 'system';
   });
 
   useLayoutEffect(() => {
